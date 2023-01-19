@@ -1,5 +1,7 @@
 import com.calculadoramedias.threads.SumaNotas;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,7 +80,7 @@ public class Main {
         System.out.println("El hilo " + hilo10.getNumeroHilo() + " que empezó en el índice " + hilo10.getIndiceInicial() +
                 " y ha contado " + hilo10.getNotasSumadas() + ", ha sumado un total de: " + hilo10.getSumaNotas());
 
-        int sumaTotalNotas = 0;
+        float sumaTotalNotas = 0;
 
         sumaTotalNotas += hilo1.getSumaNotas();
         sumaTotalNotas += hilo2.getSumaNotas();
@@ -91,7 +93,11 @@ public class Main {
         sumaTotalNotas += hilo9.getSumaNotas();
         sumaTotalNotas += hilo10.getSumaNotas();
 
-        int media = sumaTotalNotas / 100000;
-        System.out.println("La media aritmética es de " + media);
+        DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
+        separadoresPersonalizados.setDecimalSeparator('.');
+        DecimalFormat formatoDecimales = new DecimalFormat("#.00", separadoresPersonalizados);
+
+        float media = sumaTotalNotas / 100000;
+        System.out.println("La media aritmética es de " + formatoDecimales.format(media));
     }
 }
